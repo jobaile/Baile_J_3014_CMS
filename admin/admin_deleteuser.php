@@ -30,7 +30,7 @@
                 <th>User ID</th>
                 <th>User Name</th>
                 <th>User Email</th>
-                <th>Detele</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>

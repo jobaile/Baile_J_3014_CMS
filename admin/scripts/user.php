@@ -46,7 +46,7 @@
 			redirect_to('index.php');
 		}else{
 			//otherwise, return an error message
-			$message = 'Guess you got canned...';
+			$message = 'Something went wrong!';
 			return $message;
 		}
 	}
