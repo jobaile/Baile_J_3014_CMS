@@ -37,6 +37,10 @@
 	<title>Edit User</title>
 </head>
 <body>
+	<!-- Dashboard Nav -->
+	<?php include('../templates/dashboard.html'); ?>
+	<!-- Dashboard Nav End-->
+	
 	<h2>Edit User</h2>
 	<?php if(!empty($message)):?>
 		<p><?php echo $message;?></p>
@@ -56,7 +60,7 @@
 			<label for="password">Password:</label>
 			<input type="text" id="password" name="password" value="<?php echo $found_user['user_pass'];?>"><br><br>
 
-			<button type="submit" name="submit">Create User</button>
+			<button type="submit" name="submit">Edit User</button>
 		</form>
 	<?php endif; ?>
 </body>

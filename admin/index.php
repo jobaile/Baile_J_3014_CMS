@@ -21,6 +21,10 @@
 	<h3>Welcome <?php echo $_SESSION['user_name'];?></h3>
 	<p>This is the admin dashboard page</p>
 
+	<?php if(!empty($message)):?>
+		<p><?php echo $message;?></p>
+	<?php endif;?>
+
 	<nav>
 		<ul>
 			<li><a href="admin_createuser.php">Create User</a></li>
