@@ -30,6 +30,10 @@
 	<title>Create User</title>
 </head>
 <body>
+	<!-- Dashboard Nav -->
+	<?php include('../templates/dashboard.html'); ?>
+	<!-- Dashboard Nav End-->
+	
 	<?php if(!empty($message)):?>
 		<p><?php echo $message;?></p>
 	<?php endif;?>

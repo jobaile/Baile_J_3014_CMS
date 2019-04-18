@@ -67,6 +67,22 @@
 			$message = 'Not deleted yet..';
 			return $message;
 		}
-		
-		//4.* (Dev) What's the security concern here???
+	}
+
+	function deleteProducts($id){
+		include('connect.php');
+		$delete_user_query = 'DELETE FROM tbl_movies WHERE movies_id = :id';
+		$delete_user = $pdo->prepare($delete_user_query);
+		$delete_user->execute(
+			array(
+				':id'=>$id
+			)
+		);
+
+		if($delete_user){
+			redirect_to('../index.php');
+		}else{
+			$message = 'Not deleted yet..';
+			return $message;
+		}
 	}

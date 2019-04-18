@@ -18,7 +18,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <h2>Time to destroy some lives...</h2>
+    
+    <!-- Dashboard Nav -->
+	<?php include('../templates/dashboard.html'); ?>
+    <!-- Dashboard Nav End-->
+    
+    <h2>Delete A User</h2>
     <table>
         <thead>
             <tr>

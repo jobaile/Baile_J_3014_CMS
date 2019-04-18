@@ -22,7 +22,7 @@ if(isset($_GET['filter'])){
 <body>
 	<!-- Header -->
 	<?php include('templates/header.html'); ?>
-	<form method="POST" action="admin/search.php?go" id="searchform"> 
+	<form method="POST" action="admin/search.php" id="searchform"> 
 		<input type="text" name="search"> 
 		<input type="submit" name="submit" value="Search"> 
 	</form> 

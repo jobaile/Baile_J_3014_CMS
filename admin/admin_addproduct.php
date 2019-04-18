@@ -29,6 +29,11 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+    
+    <!-- Dashboard Nav -->
+	<?php include('../templates/dashboard.html'); ?>
+    <!-- Dashboard Nav End-->
+    
     <?php if (!empty($message)): ?>
         <p><?php echo $message; ?></p>
     <?php endif; ?>
