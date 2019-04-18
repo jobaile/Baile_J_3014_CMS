@@ -35,14 +35,10 @@ gulp sass
 
 5. Copy entire project folder to `www` or `htdocs` folder of your localhost
 
-## The Team
-* Joanna Baile - Developer
-* Fernando D'Oria - Designer
-
 ## Built With
 * [PHP](https://www.php.net/)
 
-## Authors
+## The Team
 
-* [Joanna Baile](http://joannabaile.com) - Developer;
-* [Nando D'Oria](http://nandodoria.ca) - Designer.
+* [Joanna Baile](http://joannabaile.com) - Developer
+* [Nando D'Oria](http://nandodoria.ca) - Designer
