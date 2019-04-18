@@ -61,17 +61,41 @@ function addProduct($pic, $name, $text, $price) {
     }
 }
 
+function editUserOne($id, $name, $text, $price){
+    include('connect.php');
+
+    $update_prod_query = 'UPDATE tbl_products SET prod_name = :name, prod_text = :text, prod_price = :price ';
+    $update_prod_query .= 'WHERE prod_id = :id';
+
+    $update_prod_set = $pdo->prepare($update_prod_query);
+    $update_prod_set->execute(
+        array(
+            ':name'=>$name,
+            ':text'=>$text,
+            ':price'=>$price,
+            ':id'=>$id
+        )
+    );
+    
+    if($update_prod_set->rowCount()){
+        redirect_to('index.php');
+    }else{
+        $message = 'Something went wrong!';
+        return $message;
+    }
+}
+
 function deleteProduct($id){
 	include('connect.php');
-	$delete_user_query = 'DELETE FROM tbl_products WHERE prod_id = :id';
-	$delete_user = $pdo->prepare($delete_user_query);
-	$delete_user->execute(
+	$delete_prod_query = 'DELETE FROM tbl_products WHERE prod_id = :id';
+	$delete_prod = $pdo->prepare($delete_prod_query);
+	$delete_prod->execute(
 		array(
 			':id'=>$id
 		)
 	);
 
-	if($delete_user){
+	if($delete_prod){
 		redirect_to('../index.php');
 	}else{
 		$message = 'Not deleted yet..';

@@ -1,14 +1,31 @@
 <?php 
 require_once('scripts/config.php');
 confirm_logged_in();
-if(isset($_GET['id'])){
+
+    $id = $_GET['id'];
 	$tbl = 'tbl_products';
 	$col = 'prod_id';
-	$value = $_GET['id'];
-	$results = getSingle($tbl, $col, $value);
-}else{
 	
-}
+	$found_prod_set = getSingle($tbl, $col, $id);
+
+	if(is_string($found_prod_set)){
+		$message = 'Failed to get product info!';
+	}
+
+	if(isset($_POST['submit'])){
+		$name = trim($_POST['name']);
+		$text = trim($_POST['text']);
+		$price = trim($_POST['price']);
+
+
+		//Validation
+		if(empty($name) || empty($text) || empty($price)){
+			$message = 'Please fill the required fields';
+		}else{
+			$result = editUserOne($id, $name, $text, $price);
+			$message = $result;
+		}
+	}
 ?>
 
 <!doctype html>
@@ -22,25 +39,27 @@ if(isset($_GET['id'])){
 	<?php include('../templates/dashboard.html'); ?>
     <!-- Dashboard Nav End-->
 
+    <?php if(!empty($message)):?>
+		<p><?php echo $message;?></p>
+	<?php endif;?>
+
     <a href="admin_editproduct.php">Go Back</a>
-	<div>
-	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?> 
-    <form action="product_detail.php" method="post" enctype="multipart/form-data">
-        <label for="prod-name">Product Name:</label>
-        <input type="text" id="first-name" name="fname" value="<?php echo $row['prod_name'];?>"><br><br>
 
-        <label for="prod-price">Pic:</label>
-        <img src="../images/<?php echo $row['prod_pic']; ?>" width="100px" height="60px">
-        <input type="file" name="pic" id="pic" value=""><br><br>
+    <div>
+    <?php if($row = $found_prod_set->fetch(PDO::FETCH_ASSOC)):?>
+		<form action="product_detail.php" method="post">
+			<label for="name">First Name:</label>
+			<input type="text" id="first-name" name="name" value="<?php echo $row['prod_name'];?>"><br><br>
 
-        <label for="prod-text">Text:</label>
-        <input type="email" id="email" name="email" value="<?php echo $row['prod_text'];?>"><br><br>
+			<label for="text">User Name:</label>
+			<input type="text" id="username" name="text" value="<?php echo $row['prod_text'];?>"><br><br>
 
-        <label for="prod-price">Price:</label>
-        <input type="text" id="password" name="password" value="<?php echo $row['prod_price'];?>"><br><br>
+			<label for="price">Password:</label>
+			<input type="text" id="password" name="price" value="<?php echo $row['prod_price'];?>"><br><br>
 
-        <button type="submit" name="submit">Edit Product</button>
-    </form>
-    <?php endwhile;?>
+			<button type="submit" name="submit">Edit User</button>
+		</form>
+	<?php endif; ?>
+    </div>
 </body>
 </html>

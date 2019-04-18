@@ -1,7 +1,5 @@
 <?php require_once('scripts/config.php');
-
     $results = getAll('tbl_products');
-    
 ?>
 
 <!doctype html>
