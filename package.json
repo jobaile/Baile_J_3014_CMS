@@ -1,0 +1,23 @@
+{
+  "name": "baile_j_3014_cms",
+  "version": "1.0.0",
+  "description": "Sport Chek CMS App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jobaile/Baile_J_3014_CMS.git"
+  },
+  "author": "Joanna Baile, Fernando D'Oria",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jobaile/Baile_J_3014_CMS/issues"
+  },
+  "homepage": "https://github.com/jobaile/Baile_J_3014_CMS#readme",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-sass": "^4.0.2"
+  }
+}
