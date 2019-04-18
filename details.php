@@ -1,7 +1,7 @@
 <?php require_once('admin/scripts/config.php');
 if(isset($_GET['id'])){
-	$tbl = 'tbl_movies';
-	$col = 'movies_id';
+	$tbl = 'tbl_products';
+	$col = 'prod_id';
 	$value = $_GET['id'];
 	$results = getSingle($tbl, $col, $value);
 }else{
@@ -24,8 +24,10 @@ if(isset($_GET['id'])){
 
 	<div>
 	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
-		<h2><?php echo $row['movies_title'];?></h2>
-		<p><?php echo $row['movies_storyline'];?></p>
+		<img src="images/<?php echo $row['prod_pic']; ?>">
+		<h2><?php echo $row['prod_name'];?></h2>
+		<p><?php echo $row['prod_text'];?></p>
+		<p>$<?php echo $row['prod_price'];?></p>
 	<?php endwhile;?>
 	</div>
 

@@ -1,5 +1,4 @@
 <?php
-
 require_once "connect.php";
 
 if(isset($_REQUEST['update_id']))
@@ -7,7 +6,7 @@ if(isset($_REQUEST['update_id']))
 	try
 	{
 		$id = $_REQUEST['update_id']; //get "update_id" from index.php page through anchor tag operation and store in "$id" variable
-		$select_stmt = $db->prepare('SELECT * FROM tbl_movies WHERE movies_id =:id'); //sql select query
+		$select_stmt = $db->prepare('SELECT * FROM tbl_products WHERE prod_id =:id'); //sql select query
 		$select_stmt->bindParam(':id',$id);
 		$select_stmt->execute(); 
 		$row = $select_stmt->fetch(PDO::FETCH_ASSOC);

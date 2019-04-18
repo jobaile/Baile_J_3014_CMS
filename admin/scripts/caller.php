@@ -10,9 +10,9 @@
 				break;
 			
 			case 'delete':
-				$id = $_GET['movies_id'];
-				// deleteUser($id);
-				deleteProduct($id);
+				$id = $_GET['id'];
+				deleteUser($id);
+				//deleteProduct($id);
 				break;
 		}
 	}
