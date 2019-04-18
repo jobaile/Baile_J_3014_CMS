@@ -16,9 +16,6 @@ function login($username, $password, $ip){
 
 
 	if($user_set->fetchColumn()>0){
-		//TODO:Fill the following lines with the proper SQL query
-		// so that it can get all rows where user_name = $username
-		// and user_pass = $password
 		$get_user_query = 'SELECT * FROM tbl_user WHERE user_name = :username';
 		$get_user_query .= ' AND user_pass = :password';
 

@@ -4,8 +4,6 @@
 	confirm_logged_in();
 
 	if(isset($_POST['submit'])){
-		//Do some preprocess for the data
-		// trim would just be a start point...
 		$fname = trim($_POST['fname']);
 		$username = trim($_POST['username']);
 		$password = trim($_POST['password']);
@@ -30,6 +28,10 @@
 	<title>Create User</title>
 </head>
 <body>
+	<!-- Dashboard Nav -->
+	<?php include('../templates/dashboard.html'); ?>
+	<!-- Dashboard Nav End-->
+	
 	<?php if(!empty($message)):?>
 		<p><?php echo $message;?></p>
 	<?php endif;?>
