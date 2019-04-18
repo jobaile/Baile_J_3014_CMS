@@ -11,9 +11,11 @@
 </head>
 
 <body>
+
 	<!-- Dashboard Nav -->
 	<?php include('../templates/dashboard.html'); ?>
 	<!-- Dashboard Nav End-->
+
 	
 	<h1>Admin Dashboard</h1>
 	<h3>Welcome <?php echo $_SESSION['user_name'];?></h3>

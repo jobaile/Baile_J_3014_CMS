@@ -4,8 +4,6 @@
 	confirm_logged_in();
 
 	if(isset($_POST['submit'])){
-		//Do some preprocess for the data
-		// trim would just be a start point...
 		$fname = trim($_POST['fname']);
 		$username = trim($_POST['username']);
 		$password = trim($_POST['password']);

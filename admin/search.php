@@ -8,7 +8,7 @@ function filterBySearch($searchRequest){
 
     if (isset($searchRequest)){
         $searchRequest = htmlentities($searchRequest);
-        $get_searched_products = 'SELECT movies_id, movies_cover, movies_title, movies_year, movies_runtime, movies_storyline FROM tbl_movies WHERE movies_title LIKE "%'.$searchRequest.'%"';
+        $get_searched_products = 'SELECT prod_id, prod_name, prod_pic FROM tbl_products WHERE prod_name LIKE "%'.$searchRequest.'%"';
         $get_searched_set = $pdo->prepare($get_searched_products);
         $get_searched_set->execute();  
 

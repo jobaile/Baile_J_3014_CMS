@@ -1,13 +1,15 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
+const gulp = require('gulp');
+const sass =  require('gulp-sass');
 
-gulp.task('sass', function () {
-    gulp.src('sass/app.scss')
-        .pipe(sass().on('error', sass.logError))
-        .pipe(rename('style.css'))
-        .pipe(gulp.dest('./css/'))
-    return gulp.src('package.json')
+gulp.task('sass', function(){
+    return gulp.src('./sass/**/*.scss')
+    .pipe(sass({ outputStyle: "compressed"}))
+    .pipe(gulp.dest('./css'));
 });
+
+gulp.task('default', gulp.series('sass'), function(){
+    gulp.watch('.sass/**/*.scss'), gulp.series('sass');
+})
 
 gulp.task('watch', function () {
     gulp.watch("sass/*.scss", gulp.series('sass'));

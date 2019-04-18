@@ -17,6 +17,9 @@ if(isset($_GET['filter'])){
 <html>
 <head>
 	<meta charset='utf-8'>
+
+	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css"/>
+
 	<title>Sport Chek</title>
 </head>
 <body>
