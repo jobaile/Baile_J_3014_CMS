@@ -19,24 +19,33 @@ if(isset($_GET['filter'])){
 	<meta charset='utf-8'>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="css/main.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
 
 	<title>Sport Chek</title>
 </head>
 <body>
 	<!-- Header -->
+	<div class="navstyle">
+	<img class="logo" src="images/logo.png" alt="logo">
+	<div class="navright">
 	<?php include('templates/header.html'); ?>
-	<form method="POST" action="admin/search.php" id="searchform"> 
+	<!-- <form method="POST" action="admin/search.php" id="searchform"> 
 		<input type="text" name="search"> 
 		<input type="submit" name="submit" value="Search"> 
-	</form> 
+	</form> -->
+	</div>
+	</div>
 	<!-- Header End-->
 
-	<div>
+	<div class="all">
 		<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
+		<div class="productall">
 		<a href="details.php?id=<?php echo $row['prod_id'];?>">
-			<img src="images/<?php echo $row['prod_pic'];?>" alt="<?php echo $row['prod_name'];?>">
-		</a>
-			<h2><?php echo $row['prod_name'];?></h2>
+			<img class="productpic" src="images/<?php echo $row['prod_pic'];?>" alt="<?php echo $row['prod_name'];?>">
+		
+			<h2 class="producttitle"><?php echo $row['prod_name'];?></h2>
+			</a>
+		</div>
 		<?php endwhile;?>
 	</div>
 
