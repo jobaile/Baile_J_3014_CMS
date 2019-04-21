@@ -1,65 +1,62 @@
-<?php 
-require_once('scripts/config.php');
-confirm_logged_in();
+<?php
+	//ob_start(); //fixes the issue of the page not refreshing with a successful update
+	require_once('scripts/config.php');
+	include('scripts/connect.php');
+	confirm_logged_in();
 
-    $id = $_GET['id'];
-	$tbl = 'tbl_products';
-	$col = 'prod_id';
-	
-	$found_prod_set = getSingle($tbl, $col, $id);
-
-	if(is_string($found_prod_set)){
-		$message = 'Failed to get product info!';
+	if(isset($_REQUEST['update_id'])){
+		try{
+			$id = $_REQUEST['update_id']; 
+			$update_user_query = 'SELECT * FROM tbl_products WHERE prod_id =:id';
+			
+			$update_set = $pdo->prepare($update_user_query);
+			$update_set->execute(
+				array(
+					':id'=>$id
+				)
+			);
+		}
+		catch(PDOException $e) {
+			$e->getMessage();
+		}
 	}
 
-	if(isset($_POST['submit'])){
-		$name = trim($_POST['name']);
-		$text = trim($_POST['text']);
-		$price = trim($_POST['price']);
-
-
+	if(isset($_REQUEST['btn_update'])){
+		$pic     = $_FILES['pic'];
+		$prod_name  = $_POST['name'];
+		
 		//Validation
-		if(empty($name) || empty($text) || empty($price)){
+		if(empty($prod_name)){
 			$message = 'Please fill the required fields';
 		}else{
-			$result = editUserOne($id, $name, $text, $price);
+			$result  = editProduct($id, $prod_name, $prod_pic);
 			$message = $result;
 		}
 	}
 ?>
-
 <!doctype html>
 <html>
 <head>
-	<meta charset='utf-8'>
-	<title>Sport Chek</title>
+	<meta charset="UTF-8">
+	<title>Testing</title>
 </head>
 <body>
-    <!-- Dashboard Nav -->
+	<!-- Dashboard Nav -->
 	<?php include('../templates/dashboard.html'); ?>
-    <!-- Dashboard Nav End-->
-
-    <?php if(!empty($message)):?>
+	<!-- Dashboard Nav End-->
+	
+	<h2>Testing</h2>
+	<?php if(!empty($message)):?>
 		<p><?php echo $message;?></p>
 	<?php endif;?>
 
-    <a href="admin_editproduct.php">Go Back</a>
-
-    <div>
-    <?php if($row = $found_prod_set->fetch(PDO::FETCH_ASSOC)):?>
-		<form action="product_detail.php" method="post">
-			<label for="name">First Name:</label>
+	<?php if($row = $update_set->fetch(PDO::FETCH_ASSOC)):?>
+		<form method="post">
+			<label for="first-name">First Name:</label>
 			<input type="text" id="first-name" name="name" value="<?php echo $row['prod_name'];?>"><br><br>
 
-			<label for="text">User Name:</label>
-			<input type="text" id="username" name="text" value="<?php echo $row['prod_text'];?>"><br><br>
-
-			<label for="price">Password:</label>
-			<input type="text" id="password" name="price" value="<?php echo $row['prod_price'];?>"><br><br>
-
-			<button type="submit" name="submit">Edit User</button>
+		<input type="submit"  name="btn_update" value="Update">
 		</form>
 	<?php endif; ?>
-    </div>
 </body>
 </html>

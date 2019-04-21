@@ -11,6 +11,19 @@ if(isset($_GET['filter'])){
 }else{
 	$results = getAll('tbl_products');
 }
+
+if(isset($_POST['searchbtn'])) {
+	$keyword = $_POST['keyword'];
+	$sql = "SELECT * FROM tbl_products WHERE prod_name LIKE '%$keyword'";
+	$searched_set = $pdo->prepare($sql);
+	$searched_set->execute();
+
+	$results = $searched_set->fetchAll(PDO::FETCH_ASSOC);
+    $filtered_products = json_encode($results);
+
+    return $filtered_products;
+
+}
 ?>
 
 <!doctype html>
@@ -36,6 +49,11 @@ if(isset($_GET['filter'])){
 	</div>
 	</div>
 	<!-- Header End-->
+
+	<form method="POST" action="index.php" id="searchform"> 
+		<input type="text" name="search"> 
+		<input type="submit" name="submitbtn" value="submit"> 
+	</form> 
 
 	<div class="all">
 		<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
