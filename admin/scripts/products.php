@@ -148,7 +148,7 @@ function deleteProduct($id){
     );
 
 	if($delete_prod){
-        unlink("../images/".$row['prod_pic']);
+        //unlink("../images/".$row['prod_pic']);
 		redirect_to('../index.php');
 	}else{
 		$message = 'Not deleted yet..';

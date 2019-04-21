@@ -49,12 +49,7 @@ if(isset($_POST['searchbtn'])) {
 	</div>
 	</div>
 	<!-- Header End-->
-
-	<form method="POST" action="index.php" id="searchform"> 
-		<input type="text" name="search"> 
-		<input type="submit" name="submitbtn" value="submit"> 
-	</form> 
-
+	
 	<div class="all">
 		<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
 		<div class="productall">
