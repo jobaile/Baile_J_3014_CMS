@@ -24,7 +24,6 @@
 		if(empty($username) || empty($password) || empty($email)){
 			$message = 'Please fill the required fields';
 		}else{
-			//Do the edit
 			$result = editUser($id, $fname, $username, $password, $email);
 			$message = $result;
 		}

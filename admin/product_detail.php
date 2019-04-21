@@ -1,46 +1,62 @@
-<?php 
-require_once('scripts/config.php');
-confirm_logged_in();
-if(isset($_GET['id'])){
-	$tbl = 'tbl_products';
-	$col = 'prod_id';
-	$value = $_GET['id'];
-	$results = getSingle($tbl, $col, $value);
-}else{
-	
-}
-?>
+<?php
+	//ob_start(); //fixes the issue of the page not refreshing with a successful update
+	require_once('scripts/config.php');
+	include('scripts/connect.php');
+	confirm_logged_in();
 
+	if(isset($_REQUEST['update_id'])){
+		try{
+			$id = $_REQUEST['update_id']; 
+			$update_user_query = 'SELECT * FROM tbl_products WHERE prod_id =:id';
+			
+			$update_set = $pdo->prepare($update_user_query);
+			$update_set->execute(
+				array(
+					':id'=>$id
+				)
+			);
+		}
+		catch(PDOException $e) {
+			$e->getMessage();
+		}
+	}
+
+	if(isset($_REQUEST['btn_update'])){
+		$pic     = $_FILES['pic'];
+		$prod_name  = $_POST['name'];
+		
+		//Validation
+		if(empty($prod_name)){
+			$message = 'Please fill the required fields';
+		}else{
+			$result  = editProduct($id, $prod_name, $prod_pic);
+			$message = $result;
+		}
+	}
+?>
 <!doctype html>
 <html>
 <head>
-	<meta charset='utf-8'>
-	<title>Sport Chek</title>
+	<meta charset="UTF-8">
+	<title>Testing</title>
 </head>
 <body>
-    <!-- Dashboard Nav -->
+	<!-- Dashboard Nav -->
 	<?php include('../templates/dashboard.html'); ?>
-    <!-- Dashboard Nav End-->
+	<!-- Dashboard Nav End-->
+	
+	<h2>Testing</h2>
+	<?php if(!empty($message)):?>
+		<p><?php echo $message;?></p>
+	<?php endif;?>
 
-    <a href="admin_editproduct.php">Go Back</a>
-	<div>
-	<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?> 
-    <form action="product_detail.php" method="post" enctype="multipart/form-data">
-        <label for="prod-name">Product Name:</label>
-        <input type="text" id="first-name" name="fname" value="<?php echo $row['prod_name'];?>"><br><br>
+	<?php if($row = $update_set->fetch(PDO::FETCH_ASSOC)):?>
+		<form method="post">
+			<label for="first-name">First Name:</label>
+			<input type="text" id="first-name" name="name" value="<?php echo $row['prod_name'];?>"><br><br>
 
-        <label for="prod-price">Pic:</label>
-        <img src="../images/<?php echo $row['prod_pic']; ?>" width="100px" height="60px">
-        <input type="file" name="pic" id="pic" value=""><br><br>
-
-        <label for="prod-text">Text:</label>
-        <input type="email" id="email" name="email" value="<?php echo $row['prod_text'];?>"><br><br>
-
-        <label for="prod-price">Price:</label>
-        <input type="text" id="password" name="password" value="<?php echo $row['prod_price'];?>"><br><br>
-
-        <button type="submit" name="submit">Edit Product</button>
-    </form>
-    <?php endwhile;?>
+		<input type="submit"  name="btn_update" value="Update">
+		</form>
+	<?php endif; ?>
 </body>
 </html>

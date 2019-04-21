@@ -10,7 +10,8 @@ if (isset($_POST['submit'])) {
     $name    = $_POST['name'];
     $text    = $_POST['text'];
     $price   = $_POST['price'];
-    $result  = addProduct($pic, $name, $text, $price);
+    $cat     = $_POST['genList'];
+    $result  = addProduct($pic, $name, $text, $price, $cat);
     $message = $result;
 }
 

@@ -1,7 +1,5 @@
 <?php require_once('scripts/config.php');
-
     $results = getAll('tbl_products');
-    
 ?>
 
 <!doctype html>
@@ -35,7 +33,7 @@
 				<td><?php echo $row['prod_name'];?></td>
 				<td><?php echo $row['prod_text'];?></td>
 				<td><?php echo $row['prod_price'];?></td>
-				<td><a href="product_detail.php?id=<?php echo $row['prod_id']; ?>">Edit</a></td>
+				<td><a href="product_detail.php?update_id=<?php echo $row['prod_id']; ?>">Edit</a></td>
                 <td><a href="scripts/caller.php?caller_id=erase&id=<?php echo $row['prod_id']; ?>">Delete</a></td>
             </tr>
             <?php endwhile; ?>
