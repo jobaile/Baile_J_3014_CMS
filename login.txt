@@ -2,3 +2,6 @@ Admin Credentials:
 
 User: admin
 Password: 123
+
+User: test
+Password: 123

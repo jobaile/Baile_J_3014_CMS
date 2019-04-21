@@ -29,7 +29,7 @@
 			<?php while($row = $results->fetch(PDO::FETCH_ASSOC)):?>
             <tr>
                 <td><?php echo $row['prod_id'];?></td>
-                <td><img src="../images/<?php echo $row['prod_pic']; ?>" width="100px" height="60px"></td>
+                <td><img src="../images/<?php echo $row['prod_pic']; ?>" alt="<?php echo $row['prod_name'];?>" width="100px" height="60px"></td>
 				<td><?php echo $row['prod_name'];?></td>
 				<td><?php echo $row['prod_text'];?></td>
 				<td><?php echo $row['prod_price'];?></td>

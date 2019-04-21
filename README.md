@@ -12,7 +12,7 @@ Here are some features of the project:
 
 ## What You Need
 
-You must have [git](https://git-scm.com/downloads), [npm]((https://www.npmjs.com/get-npm), and your choice of a solution stack such as MAMP, XAMPP, or WAMP.
+You must have [git](https://git-scm.com/downloads), [npm](https://www.npmjs.com/get-npm), and your choice of a solution stack such as MAMP, XAMPP, or WAMP.
 
 ### Installing
 
@@ -31,9 +31,13 @@ npm install
 gulp sass
 ```
 
-4. Import database (`database/db_cms`) to your phpMyAdmin and configure database connection in `admin/script/connect.php`;
+4. Import database (`database/db_cms`) to your phpMyAdmin and configure database connection in `admin/script/connect.php`
 
 5. Copy entire project folder to `www` or `htdocs` folder of your localhost
+
+## Run
+
+Turn your solution stack server on and run your localhost inside your web browser.
 
 ## Built With
 * [PHP](https://www.php.net/)

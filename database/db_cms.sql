@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Apr 18, 2019 at 12:26 PM
+-- Generation Time: Apr 21, 2019 at 10:21 AM
 -- Server version: 5.6.38
 -- PHP Version: 7.1.12
 
@@ -41,7 +41,8 @@ INSERT INTO `tbl_category` (`cat_id`, `cat_name`) VALUES
 (3, 'Hats'),
 (4, 'Electronics'),
 (5, 'Jerseys'),
-(6, 'Kids');
+(6, 'Kids'),
+(7, 'Bikes');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,12 @@ INSERT INTO `tbl_products` (`prod_id`, `prod_pic`, `prod_name`, `prod_text`, `pr
 (27, 'kids2.jpg', 'Nike Toddler Running Shoe', 'Size 1-9 Available. Toddler Size.', '35.00'),
 (28, 'kids3.jpg', 'Nike Blue Running Shoe', 'Size 1-7 Available. Toddler Size.', '24.99'),
 (29, 'kids4.jpg', 'Girls Purple Under Armour Shorts', 'Fit for any athlete. Short shorts for girls with waistband included', '12.99'),
-(30, 'kids5.jpg', 'Boys Blue 3D Nike Graphic Tee', 'Screen printed Nike Graphic Tee. Boys Sizing.', '24.98');
+(30, 'kids5.jpg', 'Boys Blue 3D Nike Graphic Tee', 'Screen printed Nike Graphic Tee. Boys Sizing.', '24.98'),
+(31, 'bike1.jpg', 'GT Aggressor Sport Mountain Bike', ' The GT Aggressor Sport model provides value-packed features at an entry-level price point, perfect for those looking to get into the sport of mountain biking.', '549.99'),
+(32, 'bike2.jpg', 'GT Avalanche Sport Mountain Bike', 'The GT Avalanche Sport model provides value-packed features at an entry-level price point, perfect for those looking to get into the sport of mountain biking.\r\n', '625.00'),
+(33, 'bike3.jpg', 'GT Sensor Alloy Sport Bike', 'The GT Sensor Alloy Sport model provides value-packed features at an entry-level price point, perfect for those looking to get into the sport of biking.', '320.99'),
+(34, 'bike4.jpg', 'GT Verb Comp Bike', 'The GT Verb Comp model provides value-packed features at an entry-level price point, perfect for those looking to getting an edge in competition.', '899.98'),
+(35, 'bike5.jpg', 'Nakamura Antidote Mountain Bike ', 'The Nakamura Antidote model provides value-packed features at an entry-level price point, perfect for those looking to get into the sport of mountain biking.', '220.78');
 
 -- --------------------------------------------------------
 
@@ -144,7 +150,8 @@ INSERT INTO `tbl_prod_cat` (`pc_id`, `prod_id`, `cat_id`) VALUES
 (32, 32, 7),
 (33, 33, 7),
 (34, 34, 7),
-(35, 35, 7);
+(35, 35, 7),
+(36, 31, 0);
 
 -- --------------------------------------------------------
 
@@ -205,19 +212,19 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_category`
 --
 ALTER TABLE `tbl_category`
-  MODIFY `cat_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cat_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tbl_products`
 --
 ALTER TABLE `tbl_products`
-  MODIFY `prod_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `prod_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `tbl_prod_cat`
 --
 ALTER TABLE `tbl_prod_cat`
-  MODIFY `pc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `pc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
