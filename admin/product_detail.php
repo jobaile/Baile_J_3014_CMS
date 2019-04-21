@@ -21,15 +21,15 @@
 		}
 	}
 
-	if(isset($_REQUEST['btn_update'])){
-		$pic     = $_FILES['pic'];
-		$prod_name  = $_POST['name'];
+	if(isset($_REQUEST['update_prod'])){
+		$pic    = $_FILES['pic'];
+		$name  	= $_POST['name'];
 		
 		//Validation
-		if(empty($prod_name)){
+		if(empty($name)){
 			$message = 'Please fill the required fields';
 		}else{
-			$result  = editProduct($id, $prod_name, $prod_pic);
+			$result  = editProduct($id, $name, $pic);
 			$message = $result;
 		}
 	}
@@ -52,10 +52,20 @@
 
 	<?php if($row = $update_set->fetch(PDO::FETCH_ASSOC)):?>
 		<form method="post">
-			<label for="first-name">First Name:</label>
-			<input type="text" id="first-name" name="name" value="<?php echo $row['prod_name'];?>"><br><br>
+			<label for="first-name">Product Name:</label>
+			<input type="text" id="prod-name" name="name" value="<?php echo $row['prod_name'];?>"><br><br>
 
-		<input type="submit"  name="btn_update" value="Update">
+			<label for="picture">Product Image:</label>
+			<input type="file" name="pic" id="pic" value="<?php echo $row['prod_pic'];?>"><br><br>
+			<img src="../images/<?php echo $row['prod_pic']; ?>" height="100" width="100" /></p>
+
+			<label for="desc">Product Text/Description:</label>
+			<input type="text" id="prod-desc" name="text" value="<?php echo $row['prod_text'];?>"><br><br>
+
+			<label for="first-name">Product Price:</label>
+			<input type="text" id="prod-price" name="price" value="<?php echo $row['prod_price'];?>"><br><br>
+
+		<input type="submit" name="update_prod" value="Update">
 		</form>
 	<?php endif; ?>
 </body>
