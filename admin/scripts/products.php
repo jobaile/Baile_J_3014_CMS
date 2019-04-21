@@ -1,18 +1,18 @@
 <?php
 
-function addProduct($pic, $name, $text, $price) {
+function addProduct($pic, $name, $text, $price, $cat) {
     try {
         include 'connect.php';
 
-        //Validate File
-        $file_type      = pathinfo($pic['prod_name'], PATHINFO_EXTENSION);
-        $accepted_types = array('jpg', 'gif', 'jpeg', 'png');
+        // //Validate File
+        $file_type      = pathinfo($pic['name'], PATHINFO_EXTENSION);
+        $accepted_types = array('gif', 'jpg', 'jpeg', 'png');
         if (!in_array($file_type, $accepted_types)) {
             throw new Exception('Wrong file type!');
         }
 
         //Image target path
-        $target_path = '../images/' . $pic['prod_name'];
+        $target_path = '../images/' . $pic['name'];
         if (!move_uploaded_file($pic['tmp_name'], $target_path)) {
             throw new Exception('Failed to move uploaded file, check permission!');
         }
@@ -23,7 +23,7 @@ function addProduct($pic, $name, $text, $price) {
         $insert_prod   = $pdo->prepare($insert_prod_query);
         $insert_result = $insert_prod->execute(
             array(
-                ':pic'       => $pic['prod_name'],
+                ':pic'       => $pic['name'],
                 ':name'      => $name,
                 ':text'      => $text,
                 ':price'     => $price,
@@ -35,12 +35,10 @@ function addProduct($pic, $name, $text, $price) {
         }
         
         $last_id = $pdo->lastInsertId();
-
-        $insert_cat_query = 'INSERT INTO tbl_prod_cat(prod_id, cat_id) VALUES(:prod_id, :cat_id)';
+        $insert_cat_query = 'INSERT INTO tbl_prod_cat (prod_id, cat_id) VALUES ("' . $last_id . '", :cat_id)';
         $insert_cat       = $pdo->prepare($insert_cat_query);
         $insert_cat->execute(
             array(
-                ':prod_id' => $last_id,
                 ':cat_id'  => $cat,
             )
         );
@@ -65,7 +63,7 @@ function editProduct($id, $name, $pic, $cat_id) {
             }
 
             //Moving the image
-            $target_path = '../images/' . $pic['prod_name'];
+            $target_path = '../images/' . $pic['name'];
             if (!move_uploaded_file($pic['tmp_name'], $target_path)) {
                 throw new Exception('Failed to move uploaded file, check permission!');
             }
@@ -74,7 +72,7 @@ function editProduct($id, $name, $pic, $cat_id) {
             $update_product_set = $pdo->prepare($update_product_query);
             $update_product_set->execute(
                 array(
-                    ':pic' => $pic['prod_name'],
+                    ':pic' => $pic['name'],
                     ':name' => $name,   
                     ':id' => $id
                 )
@@ -110,6 +108,7 @@ function editProduct($id, $name, $pic, $cat_id) {
     } catch(PDOException $e) {
         echo $e->getMessage();
     }
+    header("Location: index.php");                
 
 }      
 

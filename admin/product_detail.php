@@ -29,7 +29,7 @@
 		if(empty($name)){
 			$message = 'Please fill the required fields';
 		}else{
-			$result  = editProduct($id, $name, $pic);
+			$result  = editProduct($id, $name, $pic, $cat_id);
 			$message = $result;
 		}
 	}

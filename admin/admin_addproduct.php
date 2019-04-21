@@ -10,8 +10,14 @@ if (isset($_POST['submit'])) {
     $name    = $_POST['name'];
     $text    = $_POST['text'];
     $price   = $_POST['price'];
-    $result  = addProduct($pic, $name, $text, $price);
-    $message = $result;
+    $cat     = $_POST['genList'];
+
+    if(empty($name) || empty($text) || empty($pic) || empty($price) || empty($cat)){
+        $message = 'Please fill the required fields';
+    }else{
+        $result  = addProduct($pic, $name, $text, $price, $cat);        
+        $message = $result;
+    }
 }
 
 ?>
