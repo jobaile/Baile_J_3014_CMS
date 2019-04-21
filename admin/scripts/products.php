@@ -1,15 +1,15 @@
 <?php
 
-function addProduct($pic, $name, $text, $price) {
+function addProduct($pic, $name, $text, $price, $cat) {
     try {
         include 'connect.php';
 
-        //Validate File
-        $file_type      = pathinfo($pic['name'], PATHINFO_EXTENSION);
-        $accepted_types = array('gif', 'jpg', 'jpe', 'jpeg', 'png');
-        if (!in_array($file_type, $accepted_types)) {
-            throw new Exception('Wrong file type!');
-        }
+        // //Validate File
+        // $file_type      = pathinfo($pic['name'], PATHINFO_EXTENSION);
+        // $accepted_types = array('gif', 'jpg', 'jpeg', 'png');
+        // if (!in_array($file_type, $accepted_types)) {
+        //     throw new Exception('Wrong file type!');
+        // }
 
         //Image target path
         $target_path = '../images/' . $pic['name'];
@@ -35,12 +35,10 @@ function addProduct($pic, $name, $text, $price) {
         }
         
         $last_id = $pdo->lastInsertId();
-
-        $insert_cat_query = 'INSERT INTO tbl_prod_cat(prod_id, cat_id) VALUES(:prod_id, :cat_id)';
+        $insert_cat_query = 'INSERT INTO tbl_prod_cat (prod_id, cat_id) VALUES ("' . $last_id . '", :cat_id)';
         $insert_cat       = $pdo->prepare($insert_cat_query);
         $insert_cat->execute(
             array(
-                ':prod_id' => $last_id,
                 ':cat_id'  => $cat,
             )
         );
