@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $name    = $_POST['name'];
     $text    = $_POST['text'];
     $price   = $_POST['price'];
-    $cat     = $_POST['genList'];
+    $cat     = $_POST['catList'];
 
     if(empty($name) || empty($text) || empty($pic) || empty($price) || empty($cat)){
         $message = 'Please fill the required fields';
@@ -52,8 +52,8 @@ if (isset($_POST['submit'])) {
         <label for="run">Product Price:</label></label>
         <input type="text" name="price" id="price" value=""><br><br>
 
-        <label for="genlist">Product Category:</label>
-        <select name="genList" id="genlist">
+        <label for="catlist">Product Category:</label>
+        <select name="catList" id="catlist">
             <option>Please select a category...</option>
             <?php while ($product_category = $product_categories->fetch(PDO::FETCH_ASSOC)): ?>
             <option value="<?php echo $product_category['cat_id']; ?>">
